@@ -3,7 +3,7 @@ using UnityEngine;
 public class ZoneChangeDetection : MonoBehaviour
 {
     public int zoneID;
-    public GameObject[] spawnPoints;
+    public SpawnPoint[] spawnPoints;
     private DynamicSpawner dynamicSpawner;
 
     private void Awake()
