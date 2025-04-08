@@ -1,4 +1,4 @@
-using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +13,6 @@ public class DynamicSpawner : MonoBehaviour
 
     [Header("SpawningVariables")]
     [SerializeField] private float spawnDelay = 2.5f;
-    [SerializeField] private int currentSpawnPointIndex = 0;
     private SpawnPoint chosenSpawnPoint;
 
     [Header("EnemiesAndRound")]
@@ -34,9 +33,7 @@ public class DynamicSpawner : MonoBehaviour
         spawnDelay -= Time.deltaTime;
         if(spawnDelay <= 0)
         {
-            spawnDelay = 2.5f;
-            chosenSpawnPoint = GetNextSpawnPoint();
-            SpawnEnemy(chosenSpawnPoint);
+            StartCoroutine(SpawnEnemyCoroutine());
         }
 
         //add roundtransition logic and other stuff AFTER the spawning system works for round 1
@@ -62,26 +59,47 @@ public class DynamicSpawner : MonoBehaviour
 
     private SpawnPoint GetNextSpawnPoint()
     {
-        //add randomization so the spawnpoints is randomly chosen (from the spawnpoints that are left)
-
         //check if every spawnpoint has been used already, if so, reset the list
         if(chosenSpawnPoints.Count == activeSpawnPoints.Count)
         {
             chosenSpawnPoints.Clear();
         }
 
-        foreach(SpawnPoint spawnPoint in activeSpawnPoints)
+        //get a list of the availablespawnpoints
+        List<SpawnPoint> availableSpawnPoints = new List<SpawnPoint>();
+        foreach (SpawnPoint spawnPoint in activeSpawnPoints)
         {
-            //check if the spawnpoint is not on CD and if the spawnpoint hasnt been chosen before yet
-            if(spawnPoint.canSpawn && !chosenSpawnPoints.Contains(spawnPoint))
+            if (spawnPoint.canSpawn && !chosenSpawnPoints.Contains(spawnPoint))
             {
-                chosenSpawnPoints.Add(spawnPoint);
-                StartCoroutine(spawnPoint.IsChosen());
-                return spawnPoint;
+                availableSpawnPoints.Add(spawnPoint);
             }
         }
 
-        return null;
+        // If there are no available spawn points, return null
+        if (availableSpawnPoints.Count == 0)
+        {
+            return null;
+        }
+
+        // Randomly select a spawnpoint from available spawnpoints
+        int randomIndex = Random.Range(0, availableSpawnPoints.Count);
+        SpawnPoint chosenSpawnPoint = availableSpawnPoints[randomIndex];
+
+        chosenSpawnPoints.Add(chosenSpawnPoint);
+        StartCoroutine(chosenSpawnPoint.IsChosen());
+
+        return chosenSpawnPoint;
+    }
+
+    private IEnumerator SpawnEnemyCoroutine()
+    {
+        while ((chosenSpawnPoint = GetNextSpawnPoint()) == null)
+        {
+            //ADD THIS TO PREVENT A TIGHT LOOP (performance optimization)
+            yield return null;
+        }
+        spawnDelay = 2.5f;
+        SpawnEnemy(chosenSpawnPoint);
     }
 
     private void SpawnEnemy(SpawnPoint spawnPoint)
