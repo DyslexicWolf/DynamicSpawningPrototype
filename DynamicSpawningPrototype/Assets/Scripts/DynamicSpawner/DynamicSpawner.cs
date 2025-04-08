@@ -4,44 +4,66 @@ using UnityEngine;
 
 public class DynamicSpawner : MonoBehaviour
 {
-    [Header("Spawnpoints")]
+    [Header("SpawnpointsVariables")]
     [SerializeField] private List<SpawnPoint> activeSpawnPoints = new List<SpawnPoint>();
     [SerializeField] private List<SpawnPoint> chosenSpawnPoints = new List<SpawnPoint>();
 
-    [Header("Activezone")]
+    [Header("ActivezoneVariables")]
     [SerializeField] private int activeZone = 0;
 
     [Header("SpawningVariables")]
     [SerializeField] private float spawnDelay = 2.5f;
     private SpawnPoint chosenSpawnPoint;
 
-    [Header("EnemiesAndRound")]
-    [SerializeField] private int totalEnemies;
+    [Header("EnemiesVariables")]
+    [SerializeField] private int totalEnemiesToSpawn;
     [SerializeField] private int totalDefeatedEnemies;
-    [SerializeField] private int maxEnemiesCap = 300;
     [SerializeField] private int totalActiveEnemies;
-    [SerializeField] private int roundIndex = 1;
+    private int maxActiveEnemiesCap = 3;
+    [SerializeField] private bool isBelowActiveEnemiesCap = true;
+    [SerializeField] private int maxEnemiesCap = 300;
     public GameObject enemyPrefab;
+
+    [Header("RoundVariables")]
+    [SerializeField] private int roundIndex = 1;
+    [SerializeField] private float roundTransitionDelay = 5f;
+    [SerializeField] private bool roundFlipped = false;
 
     private void Awake()
     {
         UpdateTotalEnemies();
+        StartCoroutine(RoundTransitionDelayCoroutine());
     }
 
     private void Update()
     {
-        spawnDelay -= Time.deltaTime;
-        if(spawnDelay <= 0)
+        if (totalActiveEnemies < maxActiveEnemiesCap)
         {
+            isBelowActiveEnemiesCap = true;
+        }
+        else
+        {
+            isBelowActiveEnemiesCap = false;
+        }
+
+        spawnDelay -= Time.deltaTime;
+        if(spawnDelay <= 0 && totalEnemiesToSpawn > 0 && roundFlipped && isBelowActiveEnemiesCap)
+        {
+            totalEnemiesToSpawn--;
+            totalActiveEnemies++;
             StartCoroutine(SpawnEnemyCoroutine());
         }
 
+        
         //add roundtransition logic and other stuff AFTER the spawning system works for round 1
         //if(totalDefeatedEnemies == totalEnemies)
         //{
-        //    totalDefeatedEnemies = 0;
         //    roundIndex++;
+        //    StartCorountine(RoundTransitionDelayCoroutine());
+        //    roundTransitionDelay = 5f;
         //    UpdateTotalEnemies();
+        //    totalDefeatedEnemies = 0;
+        //    totalSpawnedEnemies = 0;
         //}
     }
 
@@ -53,8 +75,8 @@ public class DynamicSpawner : MonoBehaviour
 
     private void UpdateTotalEnemies()
     {
-        totalEnemies = Mathf.FloorToInt(Mathf.Min(4 * Mathf.Pow(1.4f, roundIndex), maxEnemiesCap));
-        Debug.Log(totalEnemies);
+        totalEnemiesToSpawn = Mathf.FloorToInt(Mathf.Min(4 * Mathf.Pow(1.4f, roundIndex), maxEnemiesCap));
+        Debug.Log(totalEnemiesToSpawn);
     }
 
     private SpawnPoint GetNextSpawnPoint()
@@ -86,7 +108,7 @@ public class DynamicSpawner : MonoBehaviour
         SpawnPoint chosenSpawnPoint = availableSpawnPoints[randomIndex];
 
         chosenSpawnPoints.Add(chosenSpawnPoint);
-        StartCoroutine(chosenSpawnPoint.IsChosen());
+        StartCoroutine(chosenSpawnPoint.IsChosenCoroutine());
 
         return chosenSpawnPoint;
     }
@@ -107,6 +129,14 @@ public class DynamicSpawner : MonoBehaviour
         //have to add references for the enemyPrefab like navmesh navigation etc after instantiation, look up on how to do it efficiently
 
         //Turn the actual spawnpoints in the scene so the enemies will look forward (at the player) when they spawn
+        
         Instantiate(enemyPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
+    }
+
+    private IEnumerator RoundTransitionDelayCoroutine()
+    {
+        roundFlipped = false;
+        yield return new WaitForSeconds(roundTransitionDelay);
+        roundFlipped = true;
     }
 }
