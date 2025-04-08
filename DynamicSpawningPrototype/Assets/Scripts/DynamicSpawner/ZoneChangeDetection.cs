@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ZoneChangeDetection : MonoBehaviour
 {
     public int zoneID;
-    public SpawnPoint[] spawnPoints;
+    public List<SpawnPoint> spawnPoints = new List<SpawnPoint>();
     private DynamicSpawner dynamicSpawner;
 
     private void Awake()
