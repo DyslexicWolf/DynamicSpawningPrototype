@@ -1211,7 +1211,7 @@ GameObject:
   - component: {fileID: 850561974}
   - component: {fileID: 850561973}
   - component: {fileID: 850561975}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1429,7 +1429,7 @@ GameObject:
   - component: {fileID: 1099432751}
   - component: {fileID: 1099432750}
   - component: {fileID: 1099432749}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerObject
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1801,7 +1801,7 @@ GameObject:
   - component: {fileID: 1219690708}
   - component: {fileID: 1219690707}
   - component: {fileID: 1219690711}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2413,7 +2413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1859656182}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerOrientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2782,7 +2782,7 @@ GameObject:
   - component: {fileID: 5702145997537002615}
   - component: {fileID: 1779114690664930796}
   - component: {fileID: 5165888166314387834}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
