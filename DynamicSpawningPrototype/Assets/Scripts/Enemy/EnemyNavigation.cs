@@ -10,6 +10,8 @@ public class EnemyNavigation : MonoBehaviour
     private float attackDistance = 2.5f;
 
     private NavMeshAgent navMeshAgent;
+    private bool pathCalculate = true;
+    private Vector3 startingPoint;
     //adjust if necessary
     private float agentSpeed = 0f;
     private Animator animator;
@@ -25,6 +27,8 @@ public class EnemyNavigation : MonoBehaviour
         //uncomment when adding animations
         //animator = GetComponent<Animator>();
         navMeshAgent.destination = navigationTarget.position;
+        startingPoint = transform.position;
+
     }
 
     private void Update()
@@ -33,14 +37,16 @@ public class EnemyNavigation : MonoBehaviour
         //this checks if there is a position in front of the agent and returns true before it reaches the "maxdistance"
         //maxdistance has to be atleast 1f, otherwise it doesnt work
         //here i can set up custome navigation logic
-        if (NavMesh.SamplePosition(transform.position, out hit, 1f, 1 << NavMesh.GetAreaFromName("Walkable")))
-        {
-            Debug.Log("on walking ground");
-        }
-        if (NavMesh.SamplePosition(transform.position, out hit, 1f, 1 << NavMesh.GetAreaFromName("Jump")))
-        {
-            Debug.Log("on jumpground");
-        }
+
+
+        //if (NavMesh.SamplePosition(transform.position, out hit, 1f, 1 << NavMesh.GetAreaFromName("Walkable")))
+        //{
+        //    Debug.Log("on walking ground");
+        //}
+        //if (NavMesh.SamplePosition(transform.position, out hit, 1f, 1 << NavMesh.GetAreaFromName("Jump")))
+        //{
+        //    Debug.Log("on jumpground");
+        //}
 
         distance = Vector3.Distance(transform.position, navigationTarget.position);
         if(distance < attackDistance && canAttack)
@@ -53,8 +59,19 @@ public class EnemyNavigation : MonoBehaviour
         else
         {
             navMeshAgent.isStopped = false;
-            //animator.SetBool("Attack", false);
-            navMeshAgent.destination = navigationTarget.position;
+            //this means that if the target is not on an area that the agent can reach, it will go until their path stops and then return to their starting point
+            //this has build in recalculation for the path if the target moves meaning that if the target gets back on an area that the agent can be, the agent starts chasing again
+            if(!navMeshAgent.hasPath && pathCalculate)
+            {
+                navMeshAgent.destination = startingPoint;
+                pathCalculate = false;
+            }
+            else
+            {
+                //animator.SetBool("Attack", false);
+                navMeshAgent.destination = navigationTarget.position;
+                pathCalculate = true;
+            }
         }
     }
 
