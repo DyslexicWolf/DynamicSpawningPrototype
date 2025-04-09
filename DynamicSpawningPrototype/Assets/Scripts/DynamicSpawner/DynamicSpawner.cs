@@ -4,30 +4,25 @@ using UnityEngine;
 
 public class DynamicSpawner : MonoBehaviour
 {
-    [Header("SpawnpointsVariables")]
-    [SerializeField] private List<SpawnPoint> activeSpawnPoints = new List<SpawnPoint>();
-    [SerializeField] private List<SpawnPoint> chosenSpawnPoints = new List<SpawnPoint>();
+    private List<SpawnPoint> activeSpawnPoints = new List<SpawnPoint>();
+    private List<SpawnPoint> chosenSpawnPoints = new List<SpawnPoint>();
 
-    [Header("ActivezoneVariables")]
-    [SerializeField] private int activeZone = 0;
+    private int activeZone = 0;
 
-    [Header("SpawningVariables")]
-    [SerializeField] private float spawnDelay = 2.5f;
+    private float spawnDelay = 2.5f;
     private SpawnPoint chosenSpawnPoint;
 
-    [Header("EnemiesVariables")]
-    [SerializeField] private int totalEnemiesToSpawn;
-    [SerializeField] private int totalDefeatedEnemies;
-    [SerializeField] private int totalActiveEnemies;
+    private int totalEnemiesToSpawn;
+    private int totalDefeatedEnemies;
+    private int totalActiveEnemies;
     private int maxActiveEnemiesCap = 3;
-    [SerializeField] private bool isBelowActiveEnemiesCap = true;
-    [SerializeField] private int maxEnemiesCap = 300;
+    private bool isBelowActiveEnemiesCap = true;
+    private int maxEnemiesCap = 300;
     public GameObject enemyPrefab;
 
-    [Header("RoundVariables")]
-    [SerializeField] private int roundIndex = 1;
-    [SerializeField] private float roundTransitionDelay = 5f;
-    [SerializeField] private bool roundFlipped = false;
+    private int roundIndex = 1;
+    private float roundTransitionDelay = 5f;
+    private bool roundFlipped = false;
 
     private void Awake()
     {

@@ -3,8 +3,7 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-    private float spawnPointCooldown = 40f;
-    private float spawnPointCooldownTimer = 0f;
+    private float spawnPointCooldown = 4f;
     public bool canSpawn = true;
 
     public IEnumerator IsChosenCoroutine()

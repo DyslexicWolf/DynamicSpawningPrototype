@@ -10,12 +10,15 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        //attack animation/logic
         if (other.gameObject.CompareTag("Player") && canAttack)
         {
             Debug.Log(other.gameObject.name);
             playerHealth.TakeDamage(damage);
             StartCoroutine(AttackDelayCoroutine());
         }
+        //else the enemy keeps running at the player (running animation), can put logic here if needed
+        
     }
 
     private IEnumerator AttackDelayCoroutine()
