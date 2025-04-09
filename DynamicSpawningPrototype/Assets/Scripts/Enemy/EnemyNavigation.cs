@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
@@ -29,6 +28,13 @@ public class EnemyNavigation : MonoBehaviour
         navMeshAgent.destination = navigationTarget.position;
         startingPoint = transform.position;
 
+        //add randomization to the enemies: can add logic that only a certain amount of enemies can be fast etc.
+
+        //this adjust the speed of the enemies
+        //animator.speed = Random.Range(0.6f, 1.6f);
+
+        //this gives some enemies the chance to push other enemies, always keep below 50 so player cant push zombies out of the way
+        //navMeshAgent.avoidancePriority = Random.Range(10, 49);
     }
 
     private void Update()
