@@ -12,5 +12,4 @@ public class SpawnPoint : MonoBehaviour
         yield return new WaitForSeconds(spawnPointCooldown);
         canSpawn = true;
     }
-
 }

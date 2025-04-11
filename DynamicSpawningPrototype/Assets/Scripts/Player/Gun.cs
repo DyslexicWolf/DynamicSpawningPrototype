@@ -69,5 +69,6 @@ public class Gun : MonoBehaviour
 
     private void OnGunShot()
     {
+        Debug.Log("on gun shot logic still needs to be implemented, vfx, special gun effects, ...");
     }
 }

@@ -23,7 +23,6 @@ public class PlayerHealth : MonoBehaviour
         {
             if (canRegenerate && !isRecovering && healthRegenerationTimer <= 0)
             {
-                Debug.Log("Regening health");
                 currentHealth += healthRegeneration;
                 healthRegenerationTimer = 1.5f;
             }

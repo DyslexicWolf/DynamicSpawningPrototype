@@ -18,5 +18,4 @@ public class GunData: ScriptableObject
 
     [HideInInspector]
     public bool reloading;
-
 }

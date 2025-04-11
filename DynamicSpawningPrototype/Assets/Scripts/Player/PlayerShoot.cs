@@ -26,7 +26,6 @@ public class PlayerShoot : MonoBehaviour
 
     private void OnReloadPerformed(InputAction.CallbackContext context)
     {
-        Debug.Log("reloadpressed");
         reloading = true;
     }
 

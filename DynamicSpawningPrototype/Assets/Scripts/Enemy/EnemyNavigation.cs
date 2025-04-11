@@ -83,10 +83,8 @@ public class EnemyNavigation : MonoBehaviour
 
     private IEnumerator AttackDelayCoroutine()
     {
-        Debug.Log("in attacked delay");
         canAttack = false;
         yield return new WaitForSeconds(attackDelay);
-        Debug.Log("attack delay done");
         canAttack = true;
     }
 
