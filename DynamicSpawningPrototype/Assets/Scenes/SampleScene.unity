@@ -1428,6 +1428,37 @@ Transform:
   - {fileID: 925656183}
   m_Father: {fileID: 2123991872}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &455246756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 455246757}
+  m_Layer: 7
+  m_Name: MuzzlePistol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &455246757
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 455246756}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.271, y: -0.443, z: 0.922}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1632675868}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &561785988
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,6 +1657,68 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canSpawn: 1
+--- !u!1001 &712597327
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1632675868}
+    m_Modifications:
+    - target: {fileID: 2325301004496892894, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.266
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325301004496892894, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.425
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325301004496892894, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.603
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325301004496892894, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99999946
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325301004496892894, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325301004496892894, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.001033919
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325301004496892894, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325301004496892894, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325301004496892894, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0.118
+      objectReference: {fileID: 0}
+    - target: {fileID: 2325301004496892894, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8843853758488612006, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+      propertyPath: m_Name
+      value: TestPistol
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+--- !u!4 &712597328 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2325301004496892894, guid: 6fbc5c670a40fb44ebdc3031596ce576, type: 3}
+  m_PrefabInstance: {fileID: 712597327}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &736708257
 GameObject:
   m_ObjectHideFlags: 0
@@ -1656,6 +1749,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1979525416}
+  - {fileID: 1632675868}
   m_Father: {fileID: 14054191}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &739479360
@@ -3110,7 +3204,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1555566558}
   m_Layer: 7
-  m_Name: Muzzle
+  m_Name: MuzzleAR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3162,6 +3256,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 983349983}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1632675867
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1632675868}
+  - component: {fileID: 1632675869}
+  m_Layer: 7
+  m_Name: Pistol
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1632675868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632675867}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 712597328}
+  - {fileID: 455246757}
+  m_Father: {fileID: 736708258}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1632675869
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1632675867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274960ca336acd64f9d8be8296ac63f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunData: {fileID: 11400000, guid: 01d80374bc20ecc4681fa1f95894c19a, type: 2}
+  muzzle: {fileID: 455246757}
+  bulletOrigin: {fileID: 14054191}
 --- !u!1 &1666578098
 GameObject:
   m_ObjectHideFlags: 0
@@ -3866,7 +4009,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1979525416
 Transform:
   m_ObjectHideFlags: 0
@@ -3898,6 +4041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunData: {fileID: 11400000, guid: 159f72c51b4ee074c8653f74bff8164b, type: 2}
   muzzle: {fileID: 1555566558}
+  bulletOrigin: {fileID: 14054191}
 --- !u!1 &2058256238
 GameObject:
   m_ObjectHideFlags: 0

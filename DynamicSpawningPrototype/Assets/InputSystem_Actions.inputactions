@@ -96,10 +96,10 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Zoom",
+                    "name": "Scroll",
                     "type": "Value",
                     "id": "820438fa-a8c9-4251-82f9-ad4ba5399ffc",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Integer",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -507,7 +507,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
-                    "action": "Zoom",
+                    "action": "Scroll",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

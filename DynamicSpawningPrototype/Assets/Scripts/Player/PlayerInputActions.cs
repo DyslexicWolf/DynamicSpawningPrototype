@@ -118,10 +118,10 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Zoom"",
+                    ""name"": ""Scroll"",
                     ""type"": ""Value"",
                     ""id"": ""820438fa-a8c9-4251-82f9-ad4ba5399ffc"",
-                    ""expectedControlType"": ""Vector2"",
+                    ""expectedControlType"": ""Integer"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -529,7 +529,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Zoom"",
+                    ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1138,7 +1138,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         m_Player_Next = m_Player.FindAction("Next", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Slide = m_Player.FindAction("Slide", throwIfNotFound: true);
-        m_Player_Zoom = m_Player.FindAction("Zoom", throwIfNotFound: true);
+        m_Player_Scroll = m_Player.FindAction("Scroll", throwIfNotFound: true);
         m_Player_Reload = m_Player.FindAction("Reload", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
@@ -1229,7 +1229,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Next;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Slide;
-    private readonly InputAction m_Player_Zoom;
+    private readonly InputAction m_Player_Scroll;
     private readonly InputAction m_Player_Reload;
     public struct PlayerActions
     {
@@ -1245,7 +1245,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         public InputAction @Next => m_Wrapper.m_Player_Next;
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
         public InputAction @Slide => m_Wrapper.m_Player_Slide;
-        public InputAction @Zoom => m_Wrapper.m_Player_Zoom;
+        public InputAction @Scroll => m_Wrapper.m_Player_Scroll;
         public InputAction @Reload => m_Wrapper.m_Player_Reload;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
@@ -1286,9 +1286,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Slide.started += instance.OnSlide;
             @Slide.performed += instance.OnSlide;
             @Slide.canceled += instance.OnSlide;
-            @Zoom.started += instance.OnZoom;
-            @Zoom.performed += instance.OnZoom;
-            @Zoom.canceled += instance.OnZoom;
+            @Scroll.started += instance.OnScroll;
+            @Scroll.performed += instance.OnScroll;
+            @Scroll.canceled += instance.OnScroll;
             @Reload.started += instance.OnReload;
             @Reload.performed += instance.OnReload;
             @Reload.canceled += instance.OnReload;
@@ -1326,9 +1326,9 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
             @Slide.started -= instance.OnSlide;
             @Slide.performed -= instance.OnSlide;
             @Slide.canceled -= instance.OnSlide;
-            @Zoom.started -= instance.OnZoom;
-            @Zoom.performed -= instance.OnZoom;
-            @Zoom.canceled -= instance.OnZoom;
+            @Scroll.started -= instance.OnScroll;
+            @Scroll.performed -= instance.OnScroll;
+            @Scroll.canceled -= instance.OnScroll;
             @Reload.started -= instance.OnReload;
             @Reload.performed -= instance.OnReload;
             @Reload.canceled -= instance.OnReload;
@@ -1524,7 +1524,7 @@ public partial class @PlayerInputActions: IInputActionCollection2, IDisposable
         void OnNext(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
         void OnSlide(InputAction.CallbackContext context);
-        void OnZoom(InputAction.CallbackContext context);
+        void OnScroll(InputAction.CallbackContext context);
         void OnReload(InputAction.CallbackContext context);
     }
     public interface IUIActions

@@ -6,7 +6,8 @@ public class Gun : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] private GunData gunData;
-    [SerializeField] private Transform muzzle; 
+    [SerializeField] private Transform muzzle;
+    [SerializeField] private Transform bulletOrigin;
     private float timeSinceLastShot;
 
     private void Awake()
@@ -43,7 +44,7 @@ public class Gun : MonoBehaviour
         {
             if (CanShoot())
             {
-                if(Physics.Raycast(muzzle.position, transform.forward, out RaycastHit hitInfo, gunData.maxDistance))
+                if(Physics.Raycast(bulletOrigin.position, bulletOrigin.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
                     //implement logic to make the enemy take damage
                     //check if what we hit is the enemy
@@ -54,6 +55,7 @@ public class Gun : MonoBehaviour
                 gunData.currentAmmo--;
                 timeSinceLastShot = 0;
                 //can use this for effects or other logic later
+                //use the muzzle transform for the origin of vfx for muzzles etc
                 OnGunShot();
             }
         }
@@ -62,7 +64,7 @@ public class Gun : MonoBehaviour
     private void Update()
     {
         timeSinceLastShot += Time.deltaTime;
-        Debug.DrawRay(muzzle.position, muzzle.forward);
+        Debug.DrawRay(bulletOrigin.position, bulletOrigin.forward);
     }
 
     private void OnGunShot()
