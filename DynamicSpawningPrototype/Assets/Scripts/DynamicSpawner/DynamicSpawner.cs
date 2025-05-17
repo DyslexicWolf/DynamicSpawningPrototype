@@ -44,6 +44,7 @@ public class DynamicSpawner : MonoBehaviour
         spawnDelay -= Time.deltaTime;
         if(spawnDelay <= 0 && totalEnemiesToSpawn > 0 && roundFlipped && isBelowActiveEnemiesCap)
         {
+            Debug.Log("should spawn");
             totalEnemiesToSpawn--;
             totalActiveEnemies++;
             StartCoroutine(SpawnEnemyCoroutine());
@@ -64,6 +65,7 @@ public class DynamicSpawner : MonoBehaviour
 
     public void ChangeActiveZone(int zoneID, List<SpawnPoint> spawnPoints)
     {
+        Debug.Log($"Changing active zone to {zoneID}");
         activeZone = zoneID;
         activeSpawnPoints = spawnPoints;
     }
@@ -124,7 +126,6 @@ public class DynamicSpawner : MonoBehaviour
         //have to add references for the enemyPrefab like navmesh navigation etc after instantiation, look up on how to do it efficiently
 
         //Turn the actual spawnpoints in the scene so the enemies will look forward (at the player) when they spawn
-        
         Instantiate(enemyPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
     }
 

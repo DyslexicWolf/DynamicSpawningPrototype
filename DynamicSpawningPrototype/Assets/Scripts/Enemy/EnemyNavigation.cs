@@ -25,7 +25,9 @@ public class EnemyNavigation : MonoBehaviour
         navMeshAgent = GetComponent<NavMeshAgent>();
         //uncomment when adding animations
         //animator = GetComponent<Animator>();
-        navMeshAgent.destination = navigationTarget.position;
+        navMeshAgent.destination = GameObject.Find("Player").transform.position;
+        navigationTarget = GameObject.Find("Player").transform;
+        playerHealth = GameObject.Find("Player").GetComponent<PlayerHealth>();
         startingPoint = transform.position;
 
         //add randomization to the enemies: can add logic that only a certain amount of enemies can be fast etc.
